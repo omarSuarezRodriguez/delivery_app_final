@@ -23,10 +23,16 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Delivery Udemy',
-        initialRoute: '/',
-        getPages: [GetPage(name: '/', page: () => LoginPage())],
-        navigatorKey: Get.key);
+      debugShowCheckedModeBanner: false,
+      title: 'Delivery Udemy',
+      initialRoute: '/',
+      getPages: [
+        GetPage(
+          name: '/',
+          page: () => LoginPage(),
+        ),
+      ],
+      navigatorKey: Get.key,
+    );
   }
 }
