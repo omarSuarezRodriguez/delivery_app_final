@@ -92,6 +92,11 @@ class LoginPage extends StatelessWidget {
         decoration: InputDecoration(
           hintText: 'Correo Electronico',
           prefixIcon: Icon(Icons.email),
+          prefixIconColor: MaterialStateColor.resolveWith(
+            (states) => states.contains(MaterialState.focused)
+                ? Colors.amber
+                : Colors.grey,
+          ),
         ),
       ),
     );
@@ -106,6 +111,11 @@ class LoginPage extends StatelessWidget {
         decoration: InputDecoration(
           hintText: 'Contraseña',
           prefixIcon: Icon(Icons.lock),
+          prefixIconColor: MaterialStateColor.resolveWith(
+            (states) => states.contains(MaterialState.focused)
+                ? Colors.amber
+                : Colors.grey,
+          ),
         ),
       ),
     );
@@ -116,8 +126,11 @@ class LoginPage extends StatelessWidget {
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 40.0, vertical: 30.0),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          print('hello');
+        },
         style: ElevatedButton.styleFrom(
+          foregroundColor: Colors.blue,
           padding: EdgeInsets.symmetric(vertical: 15.0),
         ),
         child: Text(
