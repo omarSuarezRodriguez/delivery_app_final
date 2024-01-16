@@ -151,7 +151,10 @@ class LoginPage extends StatelessWidget {
       margin: EdgeInsets.only(top: 30.0, bottom: 30.0),
       child: Text(
         'Ingresa esta informacion',
-        style: TextStyle(color: Colors.black),
+        style: TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.w500,
+        ),
       ),
     );
   }
