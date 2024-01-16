@@ -1,8 +1,11 @@
+import 'package:delivery_app_final/src/pages/login/login_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+  LoginController controlador = Get.put(LoginController());
+
   ScrollController _scrollController = ScrollController();
 
   @override
@@ -166,12 +169,15 @@ class LoginPage extends StatelessWidget {
           ),
         ),
         SizedBox(width: 7.0),
-        Text(
-          'Registrate Aqui',
-          style: TextStyle(
-            color: Colors.amber,
-            fontWeight: FontWeight.bold,
-            fontSize: 17.0,
+        GestureDetector(
+          onTap: () => controlador.goToRegisterPage(),
+          child: Text(
+            'Registrate Aqui',
+            style: TextStyle(
+              color: Colors.amber,
+              fontWeight: FontWeight.bold,
+              fontSize: 17.0,
+            ),
           ),
         ),
       ],
