@@ -32,6 +32,22 @@ class _MyAppState extends State<MyApp> {
           page: () => LoginPage(),
         ),
       ],
+      theme: ThemeData(
+        primaryColor: Colors.amber,
+        colorScheme: ColorScheme(
+          primary: Colors.amber,
+          secondary: Colors.amberAccent,
+          brightness: Brightness.light,
+          background: Colors.white,
+          onPrimary: Colors.amber,
+          surface: Colors.amber,
+          onSurface: Colors.grey,
+          error: Colors.grey,
+          onError: Colors.grey,
+          onSecondary: Colors.grey,
+          onBackground: Colors.grey,
+        ),
+      ),
       navigatorKey: Get.key,
     );
   }

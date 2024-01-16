@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
+  ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -11,18 +13,22 @@ class LoginPage extends StatelessWidget {
         child: _textDontHaveAccount(),
       ),
       // Posicionar elementos uno encima del otro
-      body: Stack(
-        children: [
-          _backgroundCover(context),
+      body: SingleChildScrollView(
+        controller: _scrollController,
+        child: Stack(
+          children: [
+            _backgroundCover(context),
+            _boxForm(context),
 
-          // Posicionar elementos uno debajo del otro (vertical)
-          Column(
-            children: [
-              _imageCover(),
-              _textAppName(),
-            ],
-          ),
-        ],
+            // Posicionar elementos uno debajo del otro (vertical)
+            Column(
+              children: [
+                _imageCover(),
+                _textAppName(),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -30,7 +36,7 @@ class LoginPage extends StatelessWidget {
   Widget _backgroundCover(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.4,
+      height: MediaQuery.of(context).size.height * 0.45,
       color: Colors.amber,
     );
   }
@@ -42,6 +48,94 @@ class LoginPage extends StatelessWidget {
         fontSize: 20.0,
         fontWeight: FontWeight.bold,
         color: Colors.black,
+      ),
+    );
+  }
+
+  Widget _boxForm(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.50,
+      margin: EdgeInsets.only(
+        top: MediaQuery.of(context).size.height * 0.38,
+        left: 50.0,
+        right: 50.0,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.black54,
+            blurRadius: 15.0,
+            offset: Offset(0, 0.75),
+          ),
+        ],
+      ),
+      child: SingleChildScrollView(
+        controller: _scrollController,
+        child: Column(
+          children: [
+            _textYourInfo(),
+            _textFieldEmail(),
+            _textFieldPassword(),
+            _buttonLogin(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _textFieldEmail() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 40.0),
+      child: TextField(
+        keyboardType: TextInputType.emailAddress,
+        decoration: InputDecoration(
+          hintText: 'Correo Electronico',
+          prefixIcon: Icon(Icons.email),
+        ),
+      ),
+    );
+  }
+
+  Widget _textFieldPassword() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 40.0),
+      child: TextField(
+        keyboardType: TextInputType.text,
+        obscureText: true,
+        decoration: InputDecoration(
+          hintText: 'Contraseña',
+          prefixIcon: Icon(Icons.lock),
+        ),
+      ),
+    );
+  }
+
+  Widget _buttonLogin() {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(horizontal: 40.0, vertical: 30.0),
+      child: ElevatedButton(
+        onPressed: () {},
+        style: ElevatedButton.styleFrom(
+          padding: EdgeInsets.symmetric(vertical: 15.0),
+        ),
+        child: Text(
+          'Login',
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _textYourInfo() {
+    return Container(
+      margin: EdgeInsets.only(top: 30.0, bottom: 30.0),
+      child: Text(
+        'Ingresa esta informacion',
+        style: TextStyle(color: Colors.black),
       ),
     );
   }
@@ -78,7 +172,7 @@ class LoginPage extends StatelessWidget {
   Widget _imageCover() {
     return SafeArea(
       child: Container(
-        margin: EdgeInsets.only(top: 20.0, bottom: 15.0),
+        margin: EdgeInsets.only(top: 20.0, bottom: 10.0),
         alignment: Alignment.center,
         child: Image.asset(
           'assets/img/delivery.png',
