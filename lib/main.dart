@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
           background: Colors.white,
           onPrimary: Colors.amber,
           surface: Colors.amber,
-          onSurface: Colors.grey,
+          onSurface: Colors.black87,
           error: Colors.grey,
           onError: Colors.grey,
           onSecondary: Colors.grey,
