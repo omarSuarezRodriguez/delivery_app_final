@@ -13,6 +13,7 @@ class User {
   String? image;
   String? password;
 
+  // Constructor
   User({
     this.id,
     this.email,
@@ -34,7 +35,7 @@ class User {
         password: json["password"],
       );
 
-  // Objeto json
+  // Metodo para pasar user a Objeto json
   Map<String, dynamic> toJson() => {
         "id": id,
         "email": email,

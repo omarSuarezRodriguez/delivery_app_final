@@ -1,3 +1,5 @@
+import 'package:delivery_app_final/src/models/response_api.dart';
+import 'package:delivery_app_final/src/providers/users_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -5,11 +7,13 @@ class LoginController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  UsersProvider usersProvider = UsersProvider();
+
   void goToRegisterPage() {
     Get.toNamed('/register');
   }
 
-  void login() {
+  void login() async {
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
 
@@ -17,8 +21,17 @@ class LoginController extends GetxController {
     print('Password ${password}');
 
     if (isValidForm(email, password)) {
-      Get.snackbar(
-          'Formulario valido', 'Estas listo para enviar la peticion Http');
+      ResponseApi responseApi = await usersProvider.login(email, password);
+
+      print('Response Api: ${responseApi.toJson()}');
+
+      if (responseApi.success == true) {
+        // El dole signo de pregunta sirve para preguntar si responseApi.message es nulo
+        // Si es nulo, entonces me muestra el string vacio, el ''
+        Get.snackbar('Login Exitoso', responseApi.message ?? ''); //null safety
+      } else {
+        Get.snackbar('Login fallido', responseApi.message ?? '');
+      }
     }
   }
 
