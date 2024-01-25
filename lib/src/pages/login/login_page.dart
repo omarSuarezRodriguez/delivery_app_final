@@ -8,6 +8,8 @@ class LoginPage extends StatelessWidget {
 
   ScrollController _scrollController = ScrollController();
 
+  LoginPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -12,6 +12,7 @@ class User {
   String? phone;
   String? image;
   String? password;
+  String? sessionToken;
 
   // Constructor
   User({
@@ -22,6 +23,7 @@ class User {
     this.phone,
     this.image,
     this.password,
+    this.sessionToken,
   });
 
   // Mapa de valores
@@ -33,6 +35,7 @@ class User {
         phone: json["phone"],
         image: json["image"],
         password: json["password"],
+        sessionToken: json["session_token"],
       );
 
   // Metodo para pasar user a Objeto json
@@ -44,5 +47,6 @@ class User {
         "phone": phone,
         "image": image,
         "password": password,
+        "session_token": sessionToken,
       };
 }
