@@ -4,13 +4,21 @@ import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
-  HomeController controller = Get.put(HomeController());
+  HomeController controlador = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('home page'),
+        child: ElevatedButton(
+          onPressed: () => controlador.signOut(),
+          child: Text(
+            'Cerrar Sesion',
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
+        ),
       ),
     );
   }

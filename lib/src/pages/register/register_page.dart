@@ -2,10 +2,13 @@ import 'package:delivery_app_final/src/pages/register/register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class RegisterPage extends StatelessWidget {
   ScrollController _scrollController = ScrollController();
 
   RegisterController controlador = Get.put(RegisterController());
+
+  // RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,7 @@ class RegisterPage extends StatelessWidget {
           children: [
             _backgroundCover(context),
             _boxForm(context),
-            _imageUser(),
+            _imageUser(context),
             _buttonBack(),
           ],
         ),
@@ -208,9 +211,6 @@ class RegisterPage extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 40.0, vertical: 30.0),
       child: ElevatedButton(
         onPressed: () => controlador.register(),
-        // onPressed: () {
-        //   controlador.register();
-        // },
         style: ElevatedButton.styleFrom(
           foregroundColor: Colors.blue,
           padding: EdgeInsets.symmetric(vertical: 15.0),
@@ -225,17 +225,22 @@ class RegisterPage extends StatelessWidget {
     );
   }
 
-  Widget _imageUser() {
+  Widget _imageUser(BuildContext context) {
     return SafeArea(
       child: Container(
         margin: EdgeInsets.only(top: 25.0),
         alignment: Alignment.topCenter,
         child: GestureDetector(
-          onTap: () {},
-          child: CircleAvatar(
-            backgroundImage: AssetImage('assets/img/user_profile.png'),
-            radius: 50.0,
-            backgroundColor: Colors.white,
+          onTap: () => controlador.showAlertDialog(context),
+          child: GetBuilder<RegisterController>(
+            builder: (value) => CircleAvatar(
+              backgroundImage: controlador.imageFile != null
+                  ? FileImage(controlador.imageFile!)
+                  : AssetImage('assets/img/user_profile.png') as ImageProvider,
+              // backgroundImage: AssetImage('assets/img/user_profile.png'),
+              radius: 50.0,
+              backgroundColor: Colors.white,
+            ),
           ),
         ),
       ),
