@@ -29,8 +29,9 @@ class LoginController extends GetxController {
       if (responseApi.success == true) {
         // Ya estamos guardando los datos del usuario en sesion
         GetStorage().write('user', responseApi.data);
-        goToHomePage();
-        // El dole signo de pregunta sirve para preguntar si responseApi.message es nulo
+        // goToHomePage();
+        goToRolesPage();
+        // El doble signo de pregunta sirve para preguntar si responseApi.message es nulo
         // Si es nulo, entonces me muestra el string vacio, el ''
         // Get.snackbar('Login Exitoso', responseApi.message ?? ''); //null safety
       } else {
@@ -41,6 +42,10 @@ class LoginController extends GetxController {
 
   void goToHomePage() {
     Get.offNamedUntil('/home', (route) => false);
+  }
+
+  void goToRolesPage() {
+    Get.offNamedUntil('/roles', (route) => false);
   }
 
   bool isValidForm(String email, String password) {
