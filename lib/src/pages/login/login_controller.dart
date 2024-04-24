@@ -1,10 +1,13 @@
 import 'package:delivery_app_final/src/models/response_api.dart';
+import 'package:delivery_app_final/src/models/user.dart';
 import 'package:delivery_app_final/src/providers/users_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class LoginController extends GetxController {
+  User user = User.fromJson(GetStorage().read('user') ?? {});
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -28,9 +31,19 @@ class LoginController extends GetxController {
 
       if (responseApi.success == true) {
         // Ya estamos guardando los datos del usuario en sesion
-        GetStorage().write('user', responseApi.data);
-        // goToHomePage();
-        goToRolesPage();
+        GetStorage()
+            .write('user', responseApi.data); // Datos del usuario en sesion
+
+        User myUser = User.fromJson(GetStorage().read('user') ?? {});
+        print('Roles Length: ${myUser.roles!.length}');
+
+        if (myUser.roles!.length > 1) {
+          goToRolesPage();
+        } else {
+          // Solo un rol
+          goToClientProductsPage();
+        }
+
         // El doble signo de pregunta sirve para preguntar si responseApi.message es nulo
         // Si es nulo, entonces me muestra el string vacio, el ''
         // Get.snackbar('Login Exitoso', responseApi.message ?? ''); //null safety
@@ -40,8 +53,8 @@ class LoginController extends GetxController {
     }
   }
 
-  void goToHomePage() {
-    Get.offNamedUntil('/home', (route) => false);
+  void goToClientProductsPage() {
+    Get.offNamedUntil('/client/products/list', (route) => false);
   }
 
   void goToRolesPage() {
