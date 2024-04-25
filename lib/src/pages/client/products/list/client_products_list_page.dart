@@ -13,7 +13,7 @@ class ClientProductsListPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Clients Products List'),
+            Text('Clients Products List '),
             ElevatedButton(
               onPressed: () => controlador.signOut(),
               child: Text(
