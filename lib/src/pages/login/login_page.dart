@@ -50,7 +50,7 @@ class LoginPage extends StatelessWidget {
           children: [
             _textYourInfo(),
             _textFieldEmail(),
-            _textFieldEPassword(),
+            _textFieldPassword(),
             _buttonLogin(),
           ],
         ),
@@ -74,7 +74,7 @@ class LoginPage extends StatelessWidget {
 
 
   // TextField Password
-  Widget _textFieldEPassword() {
+  Widget _textFieldPassword() {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 40),
       child: TextField(
