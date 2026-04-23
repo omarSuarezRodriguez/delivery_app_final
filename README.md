@@ -1,6 +1,18 @@
-# delivery_app_final
+## delivery_app_final
 
-A new Flutter project.
+App flutter
+
+
+
+## Pendientes
+
+- Se debe cambiar http por https, tanto aquí como en la App flutter en la carpeta android, en manifest, usando "android:networkSecurityConfig="@xml/network_security_config" (preguntarle a chatgpt cómo implementar)
+
+
+## Anotaciones
+
+
+
 
 
 adb kill-server
