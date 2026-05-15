@@ -2,6 +2,7 @@ import 'package:delivery_app_final/src/models/response_api.dart';
 import 'package:delivery_app_final/src/providers/users_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class LoginController extends GetxController {
 
@@ -28,7 +29,9 @@ class LoginController extends GetxController {
       print('Response Api: ${responseApi.toJson()}');
 
       if (responseApi.success == true) {
-        Get.snackbar('Login exitoso', responseApi.message ?? ''); // Si viene nulo, mostramos el texto vació
+
+        GetStorage().write('user', responseApi.data); // Datos del usuario en sesión
+        goToHomePage();
       }
       else {
         Get.snackbar('Login fallido', responseApi.message ?? '');
@@ -37,6 +40,13 @@ class LoginController extends GetxController {
       
     }
 
+  }
+
+
+
+  // goTohomePage
+  void goToHomePage() {
+    Get.toNamed('/home');
   }
 
   // Validación
